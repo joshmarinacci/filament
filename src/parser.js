@@ -142,12 +142,12 @@ export class FilamentFunction {
     }
 
     log() {
-        let args = Array.prototype.slice.call(arguments)
-        console.log('###', this.name.toUpperCase(), ...args)
+        const args = Array.prototype.slice.call(arguments)
+        console.log('###', this.name.toUpperCase(), ...args);
     }
 
     apply_function(args) {
-        let params = match_args_to_params(args,this.params,this.name)
+        const params = match_args_to_params(args,this.params,this.name)
         return this.apply_with_parameters(params)
     }
 

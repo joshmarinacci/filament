@@ -18,17 +18,17 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "date-fns": "^2.19.0",
-    "mocha": "^8.3.1",
+    "date-fns": "^2.22.1",
+    "mocha": "^8.4.0",
     "node-fetch": "^2.6.1",
-    "ohm-js": "^15.4.1"
+    "ohm-js": "^15.5.0"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.2",
-    "@rollup/plugin-commonjs": "^17.1.0",
-    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
     "http-server": "^0.12.3",
     "pureimage": "^0.2.7",
-    "rollup": "^2.40.0"
+    "rollup": "^2.50.5"
   }
 }

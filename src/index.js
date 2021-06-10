@@ -1,4 +1,4 @@
-import {Parser} from './parser.js'
+import {Parser, FilamentFunction, FilamentFunctionWithScope} from './parser.js'
 import {make_standard_scope} from './lang.js'
 import filament_grammar from "./filament.ohm.js"
 
@@ -27,6 +27,30 @@ export {
     is_canvas_result,
     is_error_result,
     is_list,
-    is_string
+    is_string,
+    date,
+    scalar,
+    boolean,
+    string,
+    time,
 } from "./ast.js"
 
+export {
+    make_standard_scope
+} from './lang.js'
+
+export {
+    FilamentFunction,
+    FilamentFunctionWithScope,
+    REQUIRED
+} from './parser.js'
+
+
+export async function parseAndEvalWithScope(code, localScope) {
+    const localParser = new Parser(localScope, filament_grammar)
+
+    let match = localParser.parse(code + "\n")
+    if (match.failed()) throw new Error("match failed")
+    let ast = localParser.ast(match)
+    return await ast.evalFilament(localScope)
+}

@@ -75,6 +75,9 @@ export function make_standard_scope() {
     return scope
 }
 
+/*
+This looks like debug code...
+
 let scope = make_standard_scope()
 
 export async function real_eval2(code, src) {
@@ -85,3 +88,4 @@ export async function real_eval2(code, src) {
     let ast = parser.ast(m)
     return await ast.evalFilament(scope)
 }
+*/

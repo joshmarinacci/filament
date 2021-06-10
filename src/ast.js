@@ -24,15 +24,28 @@ export class Scope {
         return new Scope(id,this)
     }
     lookup(name) {
-        if(!this.funs[name]) {
+        let result = this.funs[name];
+        if(!result) {
             if(this.parent) {
-                return this.parent.lookup(name)
+                result = this.parent.lookup(name)
             } else {
                 throw new Error(`no such identifier ${name}`)
             }
         }
 
-        return this.funs[name]
+        return result;
+    }
+    lookupOrNull(name) {
+        let result = this.funs[name];
+        if(!result) {
+            if(this.parent) {
+                result = this.parent.lookupOrNull(name)
+            } else {
+                result = null;
+            }
+        }
+
+        return result;
     }
     install(...funs) {
         funs.forEach(fun => {
@@ -327,7 +340,7 @@ class FCall extends ASTNode {
 }
 export const call = (name,args) => new FCall(name,args)
 
-class FunctionDefintion extends ASTNode {
+class FunctionDefinition extends ASTNode {
     constructor(name, args, block) {
         super()
         this.type = 'function_definition'
@@ -350,7 +363,7 @@ class FunctionDefintion extends ASTNode {
         return this
     }
 }
-export const fundef = (name,args,block) => new FunctionDefintion(name,args,block)
+export const fundef = (name,args,block) => new FunctionDefinition(name,args,block)
 
 class FIndexedArg extends ASTNode {
     constructor(value) {
